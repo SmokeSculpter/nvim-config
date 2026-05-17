@@ -29,6 +29,7 @@ vim.opt.winblend = 0 -- floating window transparency
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.lazyredraw = true -- do not redraw during macros
 vim.opt.synmaxcol = 300 -- syntax highlighting limit
+vim.opt.signcolumn = "yes:2"
 
 local undodir = vim.fn.expand("~/.vim/undodir")
 if
