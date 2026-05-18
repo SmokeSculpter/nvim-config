@@ -282,20 +282,23 @@ vim.pack.add({
 -- Plugin Configs
 
 vim.g.rustaceanvim = {
-	server = {
-		capabilities = require("blink.cmp").get_lsp_capabilities(),
-		default_settings = {
-			["rust-analyzer"] = {
-				checkOnSave = true,
-				check = {
-					command = "clippy",
-				},
-				inlayHints = {
-					enable = true,
-				},
-			},
-		},
-	},
+    server = {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+        default_settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = false,
+                check = {
+                    command = "clippy",
+                },
+                diagnostics = {
+                    enable = true,
+                },
+                inlayHints = {
+                    enable = true,
+                },
+            },
+        },
+    },
 }
 
 require("nordic").setup({})
