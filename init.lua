@@ -6,12 +6,12 @@ vim.opt.cursorline = true -- highlight current line
 vim.opt.wrap = true -- wrap lines
 vim.opt.scrolloff = 20 -- keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 10 -- keep 10 lines to left/right of cursor
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:block-blinkwait700-blinkon400-blinkoff250,r-cr:hor20,o:hor50"
 
 vim.opt.tabstop = 2 -- tabwidth
 vim.opt.shiftwidth = 2 -- indent width
 vim.opt.softtabstop = 2 -- soft tab stop not tabs on tab/backspace
 vim.opt.expandtab = true -- use spaces instead of tabs
-vim.opt.smartindent = true -- smart auto-indent
 vim.opt.autoindent = true -- copy indent from current line
 
 vim.opt.ignorecase = true -- case insensitive search
@@ -286,7 +286,7 @@ vim.g.rustaceanvim = {
         capabilities = require("blink.cmp").get_lsp_capabilities(),
         default_settings = {
             ["rust-analyzer"] = {
-                checkOnSave = false,
+                checkOnSave = true,
                 check = {
                     command = "clippy",
                 },
@@ -512,8 +512,13 @@ local diagnostic_signs = {
 }
 
 vim.diagnostic.config({
-	virtual_text = { prefix = "●", spacing = 4 },
+	virtual_text = { 
+    prefix = "●",
+    spacing = 4,
+    severity = { min = vim.diagnostic.severity.WARN},
+  },
 	signs = {
+    severity = { min = vim.diagnostic.severity.WARN},
 		text = {
 			[vim.diagnostic.severity.ERROR] = diagnostic_signs.Error,
 			[vim.diagnostic.severity.WARN] = diagnostic_signs.Warn,
@@ -521,7 +526,7 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.HINT] = diagnostic_signs.Hint,
 		},
 	},
-	underline = true,
+	underline = { severity = { min = vim.diagnostic.severity.WARN} },
 	update_in_insert = true,
 	severity_sort = true,
 	float = {
@@ -765,6 +770,7 @@ vim.lsp.enable({
 })
 
 require("flutter-tools").setup({
+	flutter_path = vim.fn.expand("$HOME/flutter/bin/flutter"),
 	lsp = {
 		capabilities = require("blink.cmp").get_lsp_capabilities(),
 		on_attach = function(client, bufnr)
@@ -772,7 +778,6 @@ require("flutter-tools").setup({
 		end,
 	},
 	widget_guides = { enabled = true },
-	debugger = { enabled = false }, -- set true if you add nvim-dap later
+	debugger = { enabled = false },
 })
-
 
