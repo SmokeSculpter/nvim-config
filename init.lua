@@ -1,4 +1,4 @@
--- Options
+
 
 vim.opt.number = true -- line number
 vim.opt.relativenumber = true -- relative line numbers
@@ -29,7 +29,7 @@ vim.opt.winblend = 0 -- floating window transparency
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.lazyredraw = true -- do not redraw during macros
 vim.opt.synmaxcol = 300 -- syntax highlighting limit
-vim.opt.signcolumn = "yes:2"
+vim.opt.signcolumn = "yes:1"
 
 local undodir = vim.fn.expand("~/.vim/undodir")
 if
@@ -269,7 +269,10 @@ vim.pack.add({
 		src = "https://github.com/saghen/blink.cmp",
 		version = vim.version.range("1.*"),
 	},
-  "https://github.com/AlexvZyl/nordic.nvim",
+  {
+    src = "https://github.com/catppuccin/nvim",
+    name = "catppuccin",
+  },
 	"https://github.com/windwp/nvim-ts-autotag",
 	"https://github.com/mrcjkb/rustaceanvim",
 	"https://github.com/nvim-lualine/lualine.nvim",
@@ -301,13 +304,14 @@ vim.g.rustaceanvim = {
     },
 }
 
-require("nordic").setup({})
-vim.cmd.colorscheme("nordic")
+require('catppuccin').setup({ })
+
+vim.cmd.colorscheme("catppuccin")
 
 
-require("lualine").setup({
+require("catppuccin").setup({
 	options = {
-		theme = "nordic",
+		theme = "tender",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 	},
@@ -512,10 +516,11 @@ local diagnostic_signs = {
 }
 
 vim.diagnostic.config({
-	virtual_text = { 
+	virtual_text = {
     prefix = "●",
     spacing = 4,
     severity = { min = vim.diagnostic.severity.WARN},
+    right_aling = true,
   },
 	signs = {
     severity = { min = vim.diagnostic.severity.WARN},
