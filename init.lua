@@ -6,7 +6,7 @@ vim.opt.cursorline = true -- highlight current line
 vim.opt.wrap = true -- wrap lines
 vim.opt.scrolloff = 20 -- keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 10 -- keep 10 lines to left/right of cursor
-vim.opt.guicursor = "n-v-c:block,i-ci-ve:block-blinkwait700-blinkon400-blinkoff250,r-cr:hor20,o:hor50"
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25-blinkwait700-blinkon400-blinkoff250,r-cr:hor20,o:hor50"
 
 vim.opt.tabstop = 2 -- tabwidth
 vim.opt.shiftwidth = 2 -- indent width
@@ -308,9 +308,9 @@ require('catppuccin').setup({ })
 
 vim.cmd.colorscheme("catppuccin")
 
-require("catppuccin").setup({
+require("lualine").setup({
 	options = {
-		theme = "tender",
+		theme = "auto",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 	},
@@ -489,7 +489,7 @@ require("bufferline").setup({
 		diagnostics = "nvim_lsp",
 		show_buffer_close_icons = false,
 		show_close_icon = false,
-		separator_style = "thick",
+		separator_style = "slant",
 		offsets = {
 			{
 				filetype = "NvimTree",
