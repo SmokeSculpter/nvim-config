@@ -1,5 +1,3 @@
-
-
 vim.opt.number = true -- line number
 vim.opt.relativenumber = true -- relative line numbers
 vim.opt.cursorline = true -- highlight current line
@@ -97,6 +95,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
+vim.keymap.set("i", "<C-S-v>", "<C-r>+", { desc = "Paste from clipboard in edit mode" })
 
 vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
@@ -126,6 +125,17 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position"
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("i", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("v", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
+
+-- Tab management
+vim.keymap.set("n", "<leader>tn", ":tabnew<CR>",      { desc = "New tab" })
+vim.keymap.set("n", "<leader>tx", ":tabclose<CR>",    { desc = "Close tab" })
+vim.keymap.set("n", "<leader>to", ":tabonly<CR>",     { desc = "Close all other tabs" })
+
+-- Switch tabs (mirrors your <S-l>/<S-h> buffer pattern)
+vim.keymap.set("n", "<S-C-l>", ":tabnext<CR>",      { desc = "Next tab" })
+vim.keymap.set("n", "<S-C-h>",  ":tabprevious<CR>",  { desc = "Previous tab" })
+
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.keymap.set("n", "<leader>pa", function() -- show file path
 	local path = vim.fn.expand("%:p")
@@ -272,6 +282,10 @@ vim.pack.add({
   {
     src = "https://github.com/catppuccin/nvim",
     name = "catppuccin",
+  },
+  {
+    src = "https://github.com/marko-cerovac/material.nvim",
+    name = "material",
   },
 	"https://github.com/windwp/nvim-ts-autotag",
 	"https://github.com/mrcjkb/rustaceanvim",
