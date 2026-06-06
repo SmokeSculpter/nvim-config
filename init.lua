@@ -25,7 +25,6 @@ vim.opt.pumheight = 10 -- popup menu height
 vim.opt.pumblend = 10 -- popup menu transparency
 vim.opt.winblend = 0 -- floating window transparency
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
-vim.opt.lazyredraw = true -- do not redraw during macros
 vim.opt.synmaxcol = 300 -- syntax highlighting limit
 vim.opt.signcolumn = "yes:1"
 
@@ -97,8 +96,8 @@ vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
 vim.keymap.set("i", "<C-S-v>", "<C-r>+", { desc = "Paste from clipboard in edit mode" })
 
-vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
 
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
@@ -291,6 +290,7 @@ vim.pack.add({
 	"https://github.com/mrcjkb/rustaceanvim",
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/akinsho/bufferline.nvim",
+	"https://github.com/tiagovla/scope.nvim",
 	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-flutter/flutter-tools.nvim",
@@ -497,6 +497,8 @@ end, { desc = "Diff this" })
 
 require("nvim-ts-autotag").setup()
 
+require("scope").setup({})
+
 require("bufferline").setup({
 	options = {
 		mode = "buffers",
@@ -504,6 +506,11 @@ require("bufferline").setup({
 		show_buffer_close_icons = false,
 		show_close_icon = false,
 		separator_style = "slant",
+		custom_filter = function(buf)
+			local bufs = vim.t.bufs
+			if not bufs then return true end
+			return vim.tbl_contains(bufs, buf)
+		end,
 		offsets = {
 			{
 				filetype = "NvimTree",
@@ -533,7 +540,7 @@ vim.diagnostic.config({
     prefix = "●",
     spacing = 4,
     severity = { min = vim.diagnostic.severity.WARN},
-    right_aling = true,
+    right_align = true,
   },
 	signs = {
     severity = { min = vim.diagnostic.severity.WARN},

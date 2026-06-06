@@ -109,6 +109,10 @@
       "rev": "135f40f1243cf73963d34cf4694f8587cc07bee9",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
+    "scope.nvim": {
+      "rev": "228aabdb1b9cc74f0c0ccec88e79873857236e49",
+      "src": "https://github.com/tiagovla/scope.nvim"
+    },
     "tender.vim": {
       "rev": "b66dc330aff998dff9d44459d84bc1c5f4304fcc",
       "src": "https://github.com/jacoborus/tender.vim"
