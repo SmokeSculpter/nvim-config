@@ -25,6 +25,14 @@
       "rev": "0303a7208dba448c459767486a38a6ec05c4216b",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "cyberdream.nvim": {
+      "rev": "4fbdeb7376faed87ead7c7c805c02092ca7bac01",
+      "src": "https://github.com/scottmckendry/cyberdream.nvim"
+    },
+    "dashboard-nvim": {
+      "rev": "f787e3462c2ee2b6117b17c1aa4ddf66cb6f57fe",
+      "src": "https://github.com/nvimdev/dashboard-nvim"
+    },
     "efmls-configs-nvim": {
       "rev": "5dc52088c231f2721f545570fcb541b04802ce6b",
       "src": "https://github.com/creativenull/efmls-configs-nvim"
@@ -68,6 +76,10 @@
     "mini.nvim": {
       "rev": "be81509b7160aa02264a59789164a2e1c4a6750a",
       "src": "https://www.github.com/echasnovski/mini.nvim"
+    },
+    "nightfox.nvim": {
+      "rev": "26b61b1f856ec37cae3cb64f5690adb955f246a1",
+      "src": "https://github.com/EdenEast/nightfox.nvim"
     },
     "nordic.nvim": {
       "rev": "c38a210bdaf79e74823d88c741029cac7f6b4481",
